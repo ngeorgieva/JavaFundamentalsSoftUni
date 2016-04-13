@@ -15,11 +15,11 @@ public class ParkingSystem {
             int desiredRow = Integer.parseInt(coordinates[1]);
             int desiredCol = Integer.parseInt(coordinates[2]);
             int movesCount = 1;
-            if (parkingLot[desiredRow][desiredCol] == false) {
+            if (!parkingLot[desiredRow][desiredCol]) {
                 parkingLot[desiredRow][desiredCol] = true;
                 movesCount += Math.abs(desiredRow - entryRow) + desiredCol;
                 System.out.println(movesCount);
-            } else if (parkingLot[desiredRow][desiredCol] == true) {
+            } else if (parkingLot[desiredRow][desiredCol]) {
                 boolean[] wantedRow = parkingLot[desiredRow];
                 int newCol = getTheClosestFreeSpot(wantedRow, desiredCol);
                 if (newCol == -1) {
@@ -38,13 +38,13 @@ public class ParkingSystem {
     private static int getTheClosestFreeSpot(boolean[] desiredRow, int desiredCol) {
         if (desiredCol == 1) {
             for (int i = 2; i < desiredRow.length; i++) {
-                if (desiredRow[i] == false) {
+                if (!desiredRow[i]) {
                     return i;
                 }
             }
         } else if (desiredCol == desiredRow.length - 1) {
             for (int i = desiredRow.length - 2; i >= 1; i--) {
-                if (desiredRow[i] == false) {
+                if (!desiredRow[i]) {
                     return i;
                 }
             }
@@ -56,7 +56,7 @@ public class ParkingSystem {
                         return desiredCol - i;
                     }
                     if (desiredCol + i <= desiredRow.length - 1) {
-                        if (desiredRow[desiredCol + i] == false) {
+                        if (!desiredRow[desiredCol + i]) {
                             return desiredCol + i;
                         }
                     }
